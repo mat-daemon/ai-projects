@@ -1,0 +1,6 @@
+Go to My Google Maps
+https://www.google.com.au/maps/about/mymaps/
+
+Then import cvs file with coordinates
+
+Look at the generated route

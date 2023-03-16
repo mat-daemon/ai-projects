@@ -1,5 +1,5 @@
 class Edge:
-    def __init__(self, company, line, departure, arrival, start, end, start_lan, start_lon, stop_lat, stop_lon):
+    def __init__(self, company, line, departure, arrival, start, end, start_lat, start_lon, stop_lat, stop_lon):
         self.company = company
         self.line = line
 
@@ -13,10 +13,10 @@ class Edge:
 
         self.start = start
         self.end = end
-        self.start_lan = start_lan
-        self.start_lon = start_lon
-        self.stop_lat = stop_lat
-        self.stop_lon = stop_lon
+        self.start_lat = float(start_lat)
+        self.start_lon = float(start_lon)
+        self.stop_lat = float(stop_lat)
+        self.stop_lon = float(stop_lon)
 
     def __str__(self):
         return (self.company + " " +
@@ -25,7 +25,7 @@ class Edge:
         self.arrival + " " +
         self.start + " " +
         self.end + " " +
-        self.start_lan + " " +
+        self.start_lat + " " +
         self.start_lon + " " +
         self.stop_lat + " " +
         self.stop_lon)
