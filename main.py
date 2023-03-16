@@ -1,9 +1,10 @@
 import heapq
-
-from utilities.csv_reader import CsvReader
-from utilities.Graph import Graph, Node
+from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
+from searching_algorithms.utilities.csv_reader import CsvReader
+from searching_algorithms.utilities.Graph import Graph, Node
 from searching_algorithms.dijkstra import dijkstra
-from searching_algorithms.a_star.a_star import distance_by_coordinates_heuristic, astar
+from searching_algorithms.a_star.a_star import astar
+from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
 
 if __name__ == '__main__':
     file_path = 'utilities/connection_graph.csv'
@@ -18,6 +19,7 @@ if __name__ == '__main__':
     #dijkstra(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
     dijkstra(g, "ROD Bielany", "KOWALE", "15:38:00")
     #g.clear_graph()
+
     #astar(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
 
     # check distance in straight line between two points in the graph
