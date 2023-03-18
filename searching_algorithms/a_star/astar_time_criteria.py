@@ -4,7 +4,7 @@ from searching_algorithms.utilities.Graph import Graph
 from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
 
 
-def astar(graph : Graph, start, end, start_time):
+def astar_time_criteria(graph : Graph, start, end, start_time):
     start_time_split = start_time.split(":")
     start_time = int(start_time_split[0]) * 3600 + int(start_time_split[1]) * 60 + int(start_time_split[2])
 
@@ -25,6 +25,7 @@ def astar(graph : Graph, start, end, start_time):
 
         if node.name == end:
             print(graph.nodes[end].cost)
+            return
 
         if not node.visited:
             node.visited = True

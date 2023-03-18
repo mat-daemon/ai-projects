@@ -1,6 +1,6 @@
 from csv import reader
 
-from utilities.Edge import Edge
+from searching_algorithms.utilities.Edge import Edge
 
 
 class CsvReader:

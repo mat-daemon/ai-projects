@@ -1,7 +1,6 @@
 import heapq
-import os
-from datetime import datetime
-from utilities.Graph import Graph
+from searching_algorithms.utilities.Graph import Graph
+from searching_algorithms.utilities.route_printers import save_route
 
 
 def dijkstra(graph : Graph, start, end, start_time):
@@ -41,27 +40,8 @@ def dijkstra(graph : Graph, start, end, start_time):
 
     print('Travel cost: ' + str(graph.nodes[end].cost))
 
-    print_route(graph.nodes[end])
+    save_route(graph.nodes[end])
 
-
-def print_route(node):
-    route = []
-
-    while node.parent is not None:
-        route.insert(0, node)
-        node = node.parent
-
-    for node in route:
-        print(node.name)
-
-    absolute_path = os.path.dirname(__file__)
-    relative_path = "routes/route" + datetime.now().strftime("%d%m%Y%H%M%S") + '.csv'
-    full_path = os.path.join(absolute_path, relative_path)
-
-    with open(full_path, 'w') as file:
-        file.write("Name,Latitude,Longitude\n")
-        for node in route:
-            file.write(f"{node.name},{node.latitude},{node.longitude}\n")
 
 
 

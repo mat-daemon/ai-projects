@@ -1,44 +1,61 @@
 import heapq
+import math
 from math import inf
 
 from searching_algorithms.utilities.Graph import Graph
 from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
+from searching_algorithms.utilities.route_printers import print_route, save_route
 
 
-def astar_change_criteria(graph : Graph, start, end, start_time):
-    start_time_split = start_time.split(":")
-    start_time = int(start_time_split[0]) * 3600 + int(start_time_split[1]) * 60 + int(start_time_split[2])
-
+def astar_line_change_criteria(graph : Graph, start, end, start_time):
     open_queue = []
+    # this cost is added when line is changed
+    # it must be big enough to make line changing not cost-effective
+    line_change_cost = 10000
 
-    # assign heuristic based function attribute to all nodes
+    # mark that heuristic cost is added as an attribute to all nodes
     for node in graph.nodes:
         graph.nodes[node].heuristic_cost = inf
+        # change 1-dimensional cost to multi-dimensional cost, each for one line
+        graph.nodes[node].cost = inf
+        graph.nodes[node].cheapest_lines = []
+        graph.nodes[node].parent = {}
 
-    graph.nodes[start].cost = 0
-    graph.nodes[start].heuristic_cost = 0
+    start_node = graph.nodes[start]
+    start_node.cost = 0
+    # set all possible line costs to 0 in the start node
+    for line in graph.lines:
+        start_node.cheapest_lines.append(line)
 
-    heapq.heappush(open_queue, (graph.nodes[start].cost + graph.nodes[start].heuristic_cost, graph.nodes[start].name))
+    heapq.heappush(open_queue, (0, start_node))
 
     while len(open_queue) > 0:
         node_cost_tuple = heapq.heappop(open_queue)
-        node = graph.nodes[node_cost_tuple[1]]
+        node = node_cost_tuple[1]
 
         if node.name == end:
             print(graph.nodes[end].cost)
+            # print_route(graph.nodes[end])
+            # save_route(graph.nodes[end])
+            return
 
-        if not node.visited:
-            node.visited = True
+        for neighbor in node.neighbors.keys():
+            graph.nodes[neighbor].heuristic_cost = distance_by_coordinates_heuristic(graph.nodes[neighbor],
+                                                                                     graph.nodes[end])
+            for edge in node.neighbors[neighbor]:
+                cost = node.cost
+                # change line because it does not exist in the node
+                if edge.line not in node.cheapest_lines:
+                    cost = cost + line_change_cost
 
-            for neighbor in node.neighbors.keys():
-                if not any(neighbor in n for n in open_queue) and not graph.nodes[neighbor].visited:
-                    for edge in node.neighbors[neighbor]:
-                        graph.nodes[neighbor].heuristic_cost = distance_by_coordinates_heuristic(graph.nodes[neighbor], graph.nodes[end])
+                if edge.line not in graph.nodes[neighbor].cheapest_lines and graph.nodes[neighbor].cost == cost:
+                    graph.nodes[neighbor].cheapest_lines.append(edge.line)
+                    heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 
-                        cost = node.cost + (edge.arrival - edge.departure) + \
-                               (edge.departure - (node.cost + start_time))
+                if graph.nodes[neighbor].cost > cost:
+                    graph.nodes[neighbor].cost = cost
+                    graph.nodes[neighbor].cheapest_lines = [edge.line]
+                    heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 
-                        if graph.nodes[neighbor].cost > cost:
-                            graph.nodes[neighbor].cost = cost
-                            graph.nodes[neighbor].parent = node
-                            heapq.heappush(open_queue, (graph.nodes[neighbor].cost + graph.nodes[neighbor].heuristic_cost, neighbor))
+
+

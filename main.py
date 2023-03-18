@@ -3,11 +3,13 @@ from searching_algorithms.utilities.heuristics import distance_by_coordinates_he
 from searching_algorithms.utilities.csv_reader import CsvReader
 from searching_algorithms.utilities.Graph import Graph, Node
 from searching_algorithms.dijkstra import dijkstra
-from searching_algorithms.a_star.a_star import astar
+from searching_algorithms.a_star.astar_time_criteria import astar_time_criteria
 from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
+from searching_algorithms.a_star.astar_change_criteria import astar_line_change_criteria
+
 
 if __name__ == '__main__':
-    file_path = 'utilities/connection_graph.csv'
+    file_path = 'searching_algorithms/utilities/connection_graph.csv'
 
     reader = CsvReader(file_path)
     reader.read_file()
@@ -17,16 +19,17 @@ if __name__ == '__main__':
 
     # check dijkstra algorithm travel schedule output
     #dijkstra(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
-    dijkstra(g, "ROD Bielany", "KOWALE", "15:38:00")
+    # g.clear_graph()
+    #dijkstra(g, "ROD Bielany", "KOWALE", "15:38:00")
     #g.clear_graph()
 
     #astar(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
+    # g.clear_graph()
 
-    # check distance in straight line between two points in the graph
-    # print(distance_by_coordinates_heuristic(g.nodes['Hallera'], g.nodes['Stalowa']))
-    # print(distance_by_coordinates_heuristic(g.nodes['GALERIA DOMINIKAŃSKA'], g.nodes['DWORZEC GŁÓWNY']))
-
-    # check astar algorithm travel schedule output
+    # astar_line_change_criteria(g, "KSIĘŻE MAŁE", "LEŚNICA", "15:38:00")
+    astar_line_change_criteria(g, "Wzgórze Partyzantów", "C.H. Aleja Bielany", "15:38:00")
+    # astar_line_change_criteria(g, "pl. Wróblewskiego", "LEŚNICA", "15:38:00")
+    # g.clear_graph()
 
 
 

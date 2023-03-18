@@ -1,5 +1,5 @@
 import math
-from utilities.Edge import Edge
+from searching_algorithms.utilities.Edge import Edge
 
 class Node:
     def __init__(self, name, latitude, longitude):
@@ -19,6 +19,7 @@ class Graph:
     def __init__(self, edges):
         self.edges = edges
         self.nodes = {}
+        self.lines = []
 
     def create_graph(self):
         for edge in self.edges:
@@ -34,6 +35,9 @@ class Graph:
                 self.nodes[node.name] = node
 
             self.nodes[edge.start].neighbors[edge.end].append(edge)
+
+            if edge.line not in self.lines:
+                self.lines.append(edge.line)
 
     def clear_graph(self):
         for node in self.nodes:
