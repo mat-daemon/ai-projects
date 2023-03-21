@@ -34,7 +34,7 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
         node = node_cost_tuple[1]
 
         if node.name == end:
-            print(graph.nodes[end].cost)
+            print("Number of changes: ", graph.nodes[end].cost)
             # print_route(graph.nodes[end])
             # save_route(graph.nodes[end])
             return
@@ -50,11 +50,17 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
 
                 if edge.line not in graph.nodes[neighbor].cheapest_lines and graph.nodes[neighbor].cost == cost:
                     graph.nodes[neighbor].cheapest_lines.append(edge.line)
+                    graph.nodes[neighbor].parent[edge.line] = node
+
                     heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 
                 if graph.nodes[neighbor].cost > cost:
                     graph.nodes[neighbor].cost = cost
                     graph.nodes[neighbor].cheapest_lines = [edge.line]
+
+                    graph.nodes[neighbor].parent = {}
+                    graph.nodes[neighbor].parent[edge.line] = node
+
                     heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 
 

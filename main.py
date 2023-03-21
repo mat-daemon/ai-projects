@@ -18,6 +18,9 @@ if __name__ == '__main__':
     g = Graph(reader.edges)
     g.create_graph()
 
+    # ----------------------------------------------------------------------------
+    # DIJKSTRA
+    # ----------------------------------------------------------------------------
     # check dijkstra algorithm travel schedule output
     #dijkstra(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
     # g.clear_graph()
@@ -25,20 +28,41 @@ if __name__ == '__main__':
     # dijkstra(g, "pl. Wróblewskiego", "Wołowska", "15:38:00")
     #g.clear_graph()
 
+
+    # ----------------------------------------------------------------------------
+    # ASTAR - TIME
+    # ----------------------------------------------------------------------------
     #astar(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
     # g.clear_graph()
 
+
+    # ----------------------------------------------------------------------------
+    # ASTAR - CHANGING LINES
+    # ----------------------------------------------------------------------------
     # astar_line_change_criteria(g, "KSIĘŻE MAŁE", "LEŚNICA", "15:38:00")
+
+    # astar_line_change_criteria(g, "Psie Pole", "Jordanowska", "15:38:00")
     # astar_line_change_criteria(g, "Wzgórze Partyzantów", "C.H. Aleja Bielany", "15:38:00")
     # astar_line_change_criteria(g, "pl. Wróblewskiego", "LEŚNICA", "15:38:00")
     # g.clear_graph()
 
 
-    tabu_search_nodes = ["Piastowska", "Górnickiego", "Ogród Botaniczny", "Katedra", "Reja"]
+    # ----------------------------------------------------------------------------
+    #   TABU SEARCH
+    # ----------------------------------------------------------------------------
+    # tabu_search_nodes = ["Piastowska", "Górnickiego", "Ogród Botaniczny", "Katedra", "Reja"]
+    # tabu_search(g, "PL. GRUNWALDZKI", tabu_search_nodes, "12:00:00")
 
-    tabu_search_nodes = ["Piastowska", "Górnickiego", "Ogród Botaniczny", "Katedra", "Reja", "Wyszyńskiego", "Prusa", "Piastowska"]
+    # tabu_search_nodes = ["Górnickiego", "Ogród Botaniczny", "Katedra", "Reja", "Grunwaldzka", "Piastowska", "Kochanowskiego", "Bujwida"]
+    # tabu_search(g, "PL. GRUNWALDZKI", tabu_search_nodes, "12:00:00")
 
-    tabu_search(g, "PL. GRUNWALDZKI", tabu_search_nodes, "12:00:00")
+    # tabu_search_nodes = ["Piastowska", "Górnickiego", "Ogród Botaniczny", "Katedra", "Urząd Wojewódzki (Muzeum Narodowe)", "pl. Wróblewskiego", "Urząd Wojewódzki (Impart)", "most Grunwaldzki"]
+    # tabu_search(g, "PL. GRUNWALDZKI", tabu_search_nodes, "12:00:00")
+
+    # tabu_search_nodes = ["Wzgórze Partyzantów", "DWORZEC GŁÓWNY", "Pułaskiego", "Kościuszki", "Komuny Paryskiej", "pl. Wróblewskiego"]
+    # tabu_search(g, "GALERIA DOMINIKAŃSKA", tabu_search_nodes, "12:00:00")
+
+
 
 
 

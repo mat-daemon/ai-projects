@@ -53,7 +53,7 @@ def tabu_search(graph : Graph, start_node, stop_nodes, start_time):
                 turns_improved = turns_improved + 1
         else:
             random.shuffle(current_solution)
-        print("Iteration {}: Best solution cost = {}".format(iteration, best_solution_cost))
+        # print("Iteration {}: Best solution cost = {}".format(iteration, best_solution_cost))
 
     print("Best solution: {}".format(best_solution))
     print("Best solution cost: {}".format(best_solution_cost))
