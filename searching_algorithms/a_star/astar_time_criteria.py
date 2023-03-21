@@ -2,6 +2,7 @@ import heapq
 from math import inf
 from searching_algorithms.utilities.Graph import Graph
 from searching_algorithms.utilities.heuristics import distance_by_coordinates_heuristic
+from searching_algorithms.utilities.route_printers import save_route
 
 
 def astar_time_criteria(graph : Graph, start, end, start_time):
@@ -25,6 +26,8 @@ def astar_time_criteria(graph : Graph, start, end, start_time):
 
         if node.name == end:
             print(graph.nodes[end].cost)
+            prefix = astar_time_criteria.__name__ + "_" + graph.nodes[start].name + "-" + graph.nodes[end].name
+            save_route(prefix, graph.nodes[end])
             return
 
         if not node.visited:

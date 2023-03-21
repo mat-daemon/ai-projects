@@ -23,6 +23,7 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
 
     start_node = graph.nodes[start]
     start_node.cost = 0
+    start_node.parent = None
     # set all possible line costs to 0 in the start node
     for line in graph.lines:
         start_node.cheapest_lines.append(line)
@@ -34,9 +35,10 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
         node = node_cost_tuple[1]
 
         if node.name == end:
-            print("Number of changes: ", graph.nodes[end].cost)
+            print("Number of changes: ", graph.nodes[end].cost/line_change_cost)
             # print_route(graph.nodes[end])
-            # save_route(graph.nodes[end])
+            prefix = astar_line_change_criteria.__name__ + "_" + graph.nodes[start].name + "-" + graph.nodes[end].name
+            save_route(prefix, graph.nodes[end])
             return
 
         for neighbor in node.neighbors.keys():

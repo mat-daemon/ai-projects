@@ -40,7 +40,8 @@ def dijkstra(graph : Graph, start, end, start_time):
 
     print('Travel cost: ' + str(graph.nodes[end].cost))
 
-    save_route(graph.nodes[end])
+    prefix = dijkstra.__name__ + "_" + graph.nodes[start].name + "-" + graph.nodes[end].name
+    save_route(prefix, graph.nodes[end])
 
 
 
