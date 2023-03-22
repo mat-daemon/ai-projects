@@ -1,4 +1,7 @@
+import math
 import os
+import time
+
 from datetime import datetime
 
 
@@ -15,6 +18,7 @@ def save_route(prefix, node):
             if arrival_line not in node.cheapest_lines:
                 arrival_line = node.cheapest_lines[0]
             node.parent = node.parent[arrival_line]
+            node.edge = node.edge[arrival_line]
 
         route.insert(0, node)
         node = node.parent
@@ -26,10 +30,11 @@ def save_route(prefix, node):
     relative_path = "../routes/" + prefix + '.csv'
     full_path = os.path.join(absolute_path, relative_path)
 
-    with open(full_path, 'w') as file:
-        file.write("Name,Latitude,Longitude\n")
+    with open(full_path, 'w', encoding='utf-8') as file:
+        file.write("Name,Latitude,Longitude,Line,Time\n")
         for node in route:
-            file.write(f"{node.name},{node.latitude},{node.longitude}\n")
+            arrival_time = time.strftime('%H:%M:%S', time.gmtime(node.edge.arrival))
+            file.write(f"{node.name},{node.latitude},{node.longitude},{node.edge.line},{arrival_time}\n")
 
 
 

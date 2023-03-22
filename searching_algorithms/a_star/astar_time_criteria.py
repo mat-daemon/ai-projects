@@ -14,6 +14,7 @@ def astar_time_criteria(graph : Graph, start, end, start_time):
     # assign heuristic based function attribute to all nodes
     for node in graph.nodes:
         graph.nodes[node].heuristic_cost = inf
+        graph.nodes[node].edge = None
 
     graph.nodes[start].cost = 0
     graph.nodes[start].heuristic_cost = 0
@@ -45,6 +46,7 @@ def astar_time_criteria(graph : Graph, start, end, start_time):
                             if graph.nodes[neighbor].cost > cost:
                                 graph.nodes[neighbor].cost = cost
                                 graph.nodes[neighbor].parent = node
+                                graph.nodes[neighbor].edge = edge
                                 heapq.heappush(open_queue, (graph.nodes[neighbor].cost + graph.nodes[neighbor].heuristic_cost, neighbor))
 
 

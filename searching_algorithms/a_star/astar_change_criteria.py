@@ -8,6 +8,9 @@ from searching_algorithms.utilities.route_printers import print_route, save_rout
 
 
 def astar_line_change_criteria(graph : Graph, start, end, start_time):
+    start_time_split = start_time.split(":")
+    start_time = int(start_time_split[0]) * 3600 + int(start_time_split[1]) * 60 + int(start_time_split[2])
+
     open_queue = []
     # this cost is added when line is changed
     # it must be big enough to make line changing not cost-effective
@@ -20,6 +23,8 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
         graph.nodes[node].cost = inf
         graph.nodes[node].cheapest_lines = []
         graph.nodes[node].parent = {}
+        graph.nodes[node].edge = {}
+
 
     start_node = graph.nodes[start]
     start_node.cost = 0
@@ -53,6 +58,7 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
                 if edge.line not in graph.nodes[neighbor].cheapest_lines and graph.nodes[neighbor].cost == cost:
                     graph.nodes[neighbor].cheapest_lines.append(edge.line)
                     graph.nodes[neighbor].parent[edge.line] = node
+                    graph.nodes[neighbor].edge[edge.line] = edge
 
                     heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 
@@ -61,7 +67,9 @@ def astar_line_change_criteria(graph : Graph, start, end, start_time):
                     graph.nodes[neighbor].cheapest_lines = [edge.line]
 
                     graph.nodes[neighbor].parent = {}
+                    graph.nodes[neighbor].edge = {}
                     graph.nodes[neighbor].parent[edge.line] = node
+                    graph.nodes[neighbor].edge[edge.line] = edge
 
                     heapq.heappush(open_queue, (cost + graph.nodes[neighbor].heuristic_cost, graph.nodes[neighbor]))
 

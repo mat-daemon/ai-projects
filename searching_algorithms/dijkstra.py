@@ -34,6 +34,7 @@ def dijkstra(graph : Graph, start, end, start_time):
                             if graph.nodes[neighbor].cost > cost:
                                 graph.nodes[neighbor].cost = cost
                                 graph.nodes[neighbor].parent = node
+                                graph.nodes[neighbor].edge = edge
 
                                 heapq.heappush(queue, (cost, graph.nodes[neighbor].name))
 

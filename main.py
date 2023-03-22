@@ -32,7 +32,9 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------
     # ASTAR - TIME
     # ----------------------------------------------------------------------------
-    # astar_time_criteria(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
+    # astar_time_criteria(g, "pl. Wróblewskiego", "Wiejska", "13:12:00")
+
+    # astar_time_criteria(g, "Tarczyński Arena (Lotnicza)", "Żmigrodzka (Obwodnica)", "13:12:00")
     # g.clear_graph()
 
 
@@ -40,7 +42,9 @@ if __name__ == '__main__':
     # ASTAR - CHANGING LINES
     # ----------------------------------------------------------------------------
     # astar_line_change_criteria(g, "KSIĘŻE MAŁE", "LEŚNICA", "15:38:00")
+
     # astar_line_change_criteria(g, "Psie Pole", "Jordanowska", "15:38:00")
+
     # astar_line_change_criteria(g, "Wzgórze Partyzantów", "C.H. Aleja Bielany", "15:38:00")
     # astar_line_change_criteria(g, "pl. Wróblewskiego", "LEŚNICA", "15:38:00")
     # g.clear_graph()
@@ -49,7 +53,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------
     #   TABU SEARCH
     # ----------------------------------------------------------------------------
-    # tabu_search_nodes = ["Piastowska", "Górnickiego", "Ogród Botaniczny", "Katedra", "Reja"]
+    # tabu_search_nodes = ["Górnickiego", "Reja", "Ogród Botaniczny", "Piastowska", "Katedra"]
     # tabu_search(g, "PL. GRUNWALDZKI", tabu_search_nodes, "12:00:00")
 
     # tabu_search_nodes = ["Górnickiego", "Ogród Botaniczny", "Katedra", "Reja", "Grunwaldzka", "Piastowska", "Kochanowskiego", "Bujwida"]
