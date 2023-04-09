@@ -24,7 +24,8 @@ if __name__ == '__main__':
     # check dijkstra algorithm travel schedule output
     # dijkstra(g, "pl. Wróblewskiego", "Wiejska", "15:38:00")
     # g.clear_graph()
-    #dijkstra(g, "ROD Bielany", "KOWALE", "15:38:00")
+    # dijkstra(g, "ROD Bielany", "KOWALE", "15:38:00")
+    # dijkstra(g, "Kwiska", "PL. GRUNWALDZKI", "15:38:00")
     # dijkstra(g, "pl. Wróblewskiego", "Wołowska", "15:38:00")
     #g.clear_graph()
 
@@ -33,7 +34,7 @@ if __name__ == '__main__':
     # ASTAR - TIME
     # ----------------------------------------------------------------------------
     # astar_time_criteria(g, "pl. Wróblewskiego", "Wiejska", "13:12:00")
-
+    # astar_time_criteria(g, "Kwiska", "PL. GRUNWALDZKI", "15:38:00")
     # astar_time_criteria(g, "Tarczyński Arena (Lotnicza)", "Żmigrodzka (Obwodnica)", "13:12:00")
     # g.clear_graph()
 
@@ -44,7 +45,7 @@ if __name__ == '__main__':
     # astar_line_change_criteria(g, "KSIĘŻE MAŁE", "LEŚNICA", "15:38:00")
 
     # astar_line_change_criteria(g, "Psie Pole", "Jordanowska", "15:38:00")
-
+    # astar_line_change_criteria(g, "Kwiska", "PL. GRUNWALDZKI", "15:38:00")
     # astar_line_change_criteria(g, "Wzgórze Partyzantów", "C.H. Aleja Bielany", "15:38:00")
     # astar_line_change_criteria(g, "pl. Wróblewskiego", "LEŚNICA", "15:38:00")
     # g.clear_graph()
