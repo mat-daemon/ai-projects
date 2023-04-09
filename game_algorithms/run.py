@@ -1,5 +1,7 @@
 from game_algorithms.reversi import start_game
 
+# EXAMPLES
+
 # 0 0 0 1 0 0 2 2
 # 0 0 0 0 0 0 0 2
 # 0 1 0 0 0 0 0 2

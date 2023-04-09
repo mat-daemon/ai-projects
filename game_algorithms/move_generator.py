@@ -1,4 +1,6 @@
 class Move:
+    """Move represents a player move, that is x and y coordinates of the placed disk on the game board
+    and all opponent disks coordinates that are reversed"""
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -13,9 +15,9 @@ class Move:
 
 
 def generate_moves(game_state, player):
-    # Generate all possible moves for the player.
-    # player - indicated by 1 or 2
-    # game_state - current game board 8x8
+    """Generate all possible moves for the player.
+    player - indicated by 1 or 2
+    game_state - current game board 8x8"""
 
     moves = []
     for row_nr, row in enumerate(game_state):
@@ -38,9 +40,9 @@ def generate_moves(game_state, player):
 
 
 def check_move(game_state, player, row_nr, col_nr, direction_x, direction_y):
-    # Check whether empty field game_state[row_nr][col_nr] could be the player's next possible move.
-    # Move is possible when there is a straight line with player's disk on the beginning of the line
-    # and player's opponent disks on the rest of the line
+    """Check whether empty field game_state[row_nr][col_nr] could be the player's next possible move.
+    Move is possible when there is a straight line with player's disk on the beginning of the line
+    and player's opponent disks on the rest of the line"""
 
     reversed_disks = []
     initial_row = row_nr
