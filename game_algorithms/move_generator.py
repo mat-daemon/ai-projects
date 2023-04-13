@@ -26,7 +26,7 @@ def generate_moves(game_state, player):
                 possible_move = Move(row_nr, col_nr)
                 possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, 1, 0))   # right
                 possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, 1, 1))   # right down
-                possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, 0, 1))  # down
+                possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, 0, 1))   # down
                 possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, -1, 1))  # left down
                 possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, -1, 0))  # left
                 possible_move.add_reversed_disks(check_move(game_state, player, row_nr, col_nr, -1, -1)) # left up

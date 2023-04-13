@@ -2,6 +2,8 @@ import math
 
 
 def minimax(node, level):
+    """Minimax algorithm implementation"""
+
     if node.isLeaf or level == 0:
         return node.calculate_result()
 

@@ -3,8 +3,11 @@ import copy
 from game_algorithms.move_generator import generate_moves, apply_move
 
 
+# --------------------------------------------------
+# Structures
+# --------------------------------------------------
 class Node:
-    """Node represents particular game state - that is a game board 8x8 with disks and a player who performs next
+    """Node represents a particular game state - that is a game board 8x8 with disks and a player who performs next
     move on that game board"""
     def __init__(self, state, player):
         self.player = player
@@ -17,6 +20,9 @@ class Node:
 
 
     def expand(self, level):
+        """Expand the decision tree starting from the current node. After the expansion next levels of nodes
+        are created down the tree"""
+
         if level > 0:
 
             # Expand node for the first time
@@ -59,13 +65,20 @@ class Node:
 
 
 class DecisionTree:
+    """Structure representing the pointer on current decision tree root node"""
     def __init__(self, initial_state, player):
         self.root = Node(initial_state, player)
 
     def expand(self, level):
         self.root.expand(level)
 
+# --------------------------------------------------
 
+
+
+# --------------------------------------------------
+# Printers
+# --------------------------------------------------
 def print_tree(node):
     print_game_board(node.state)
     for child in node.children:
