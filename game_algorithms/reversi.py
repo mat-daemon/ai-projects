@@ -8,8 +8,11 @@ from algorithms.minimax import minimax
 
 def start_game():
     game_board = []
-    player1 = Player(1)
-    player2 = Player(2)
+
+    strategies = {}
+
+    player1 = Player(1, strategies, "")
+    player2 = Player(2, strategies, "")
 
     player1.opponent = player2
     player2.opponent = player1
@@ -69,6 +72,6 @@ def start_game():
         decision_tree.root = decision_tree.root.children[next_move]
 
     print_tree(decision_tree.root)
-    print(decision_tree.root.calculate_result())
+    print("Player 1 result is: " + decision_tree.root.calculate_result())
 
 

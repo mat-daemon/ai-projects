@@ -61,16 +61,15 @@ class Node:
 
     def calculate_result(self):
         if self.result is None:
+            # Calculate game result
             if self.isLeaf:
                 self.result = 0
                 for row in self.state:
                     self.result += row.count(self.player.nr)
+            # Use heuristic with player strategy
             else:
-                # TODO use heuristic instead
-                self.result = 0
-                for row in self.state:
-                    self.result += row.count(self.player.nr)
-                # ---------------------------------------------
+                self.result = self.player.strategies[self.player.strategy](self.state)
+
         return self.result
 
 
