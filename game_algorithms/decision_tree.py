@@ -41,7 +41,17 @@ class Node:
 
                 # if player cannot do a next move
                 else:
-                    self.isLeaf = True
+                    other_player_moves = generate_moves(self.state, self.player.opponent.nr)
+
+                    # Neither player can do a move
+                    # Game is over
+                    if len(other_player_moves) == 0:
+                        self.isLeaf = True
+                    # Player does not perform a move and skip the round
+                    else:
+                        node = Node(self.state, self.player.opponent)
+                        self.children.append(node)
+
 
             # Expand the tree further
             else:
