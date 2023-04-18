@@ -14,7 +14,7 @@ class Node:
         self.state = state
         self.children = []
         self.isLeaf = False
-        self.result = None
+        self.rate = None
         self.minimax = None
         self.expanded = False
 
@@ -59,18 +59,27 @@ class Node:
                     child.expand(level-1)
 
 
-    def calculate_result(self):
-        if self.result is None:
-            # Calculate game result
+    def calculate_rate(self):
+        if self.rate is None:
             if self.isLeaf:
-                self.result = 0
+                player_disks = 0
+                opponent_disks = 0
                 for row in self.state:
-                    self.result += row.count(self.player.nr)
+                    player_disks += row.count(self.player.nr)
+                    opponent_disks += row.count(self.player.opponent.nr)
+
+                # Player wins
+                if player_disks > opponent_disks:
+                    self.rate = 100
+                # Player loses
+                else:
+                    self.rate = 0
+
             # Use heuristic with player strategy
             else:
-                self.result = self.player.strategies[self.player.strategy](self.state)
+                self.rate = self.player.strategy(self.state, self.player.nr)
 
-        return self.result
+        return self.rate
 
 
 class DecisionTree:
