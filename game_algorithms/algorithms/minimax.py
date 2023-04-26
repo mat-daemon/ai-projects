@@ -1,28 +1,22 @@
 import math
 
 
-def minimax(alfa, beta, node, level):
+def minimax(node, level):
     """Minimax algorithm implementation"""
-    # With alfa - beta prune
 
     if node.isLeaf or level == 0:
-        node.minimax = node.calculate_rate()
         return node.calculate_rate()
 
     if node.player.nr == 1:
-        for child in node.children:
-            alfa = max(alfa, minimax(alfa, beta, child, level - 1))
-            if beta <= alfa:
-                break
-        node.minimax = alfa
-        return alfa
-
+        comp_function = lambda a, b: a < b
     else:
-        for child in node.children:
-            beta = min(beta, minimax(alfa, beta, child, level - 1))
-            if beta <= alfa:
-                break
-        node.minimax = beta
-        return beta
+        comp_function = lambda a, b: a > b
+    min_max_value = math.inf
+    for child in node.children:
+        minimax_result = minimax(child, level-1)
+        if comp_function(minimax_result, min_max_value):
+            min_max_value = minimax_result
+    node.minimax = min_max_value
+    return min_max_value
 
 

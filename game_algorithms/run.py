@@ -1,3 +1,5 @@
+import time
+
 from game_algorithms.reversi import start_game
 
 # EXAMPLES
@@ -33,4 +35,8 @@ from game_algorithms.reversi import start_game
 # END
 
 if __name__ == '__main__':
-    start_game()
+    start_time = time.time()
+    start_game(verbose=False, alfa_beta_prune=True)
+    end_time = time.time()
+
+    print(f"Time elapsed: {end_time-start_time}")
